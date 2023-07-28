@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -20,45 +23,48 @@ import java.util.ArrayList;
 
 public class PessoaJuridicaRepo {
 
-private ArrayList<PessoaJuridica> pessoasJuridicas = new ArrayList<>();
+    private Map<Integer, PessoaJuridica> mapaPessoas;
     
-    
+    public PessoaJuridicaRepo() { mapaPessoas = new HashMap<>();}
 
     public void inserir(PessoaJuridica pessoaJuridica) {
-        pessoasJuridicas.add(pessoaJuridica);
+        mapaPessoas.put(pessoaJuridica.getId(), pessoaJuridica);
     }
 
     public void alterar(PessoaJuridica pessoaJuridica) {
-        int index = pessoasJuridicas.indexOf(pessoaJuridica);
-        pessoasJuridicas.set(index, pessoaJuridica);
+        if (mapaPessoas.containsKey(pessoaJuridica.getId())) {
+            mapaPessoas.put(pessoaJuridica.getId(), pessoaJuridica);
+        } else {
+            System.out.println("Pessoa não encontrada. Não foi possível realizar a alteração.");
+        }
     }
 
-    public void excluir(PessoaJuridica pessoaJuridica) {
-        pessoasJuridicas.remove(pessoaJuridica);
+    public void excluir(int id) {
+        mapaPessoas.remove(id);
     }
 
     public PessoaJuridica obter(int id) {
-        return pessoasJuridicas.get(id);
+        return mapaPessoas.get(id);
     }
 
-    public ArrayList<PessoaJuridica> obterTodos() {
-        return pessoasJuridicas;
+    public List<PessoaJuridica> obterTodos() {
+        return new ArrayList<>(mapaPessoas.values());
     }
 
     public void persistir(String nomeArquivo) throws IOException {
         FileOutputStream fos = new FileOutputStream(new File(nomeArquivo));
         ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(pessoasJuridicas);
+        oos.writeObject(mapaPessoas);
         oos.close();
-        System.out.println("Dados de Pessoa Juridica Armazenados");
+        System.out.println("Dados de Pessoa Fisica Armazenados.");
     }
 
     public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(new File(nomeArquivo));
         ObjectInputStream ois = new ObjectInputStream(fis);
-        pessoasJuridicas = (ArrayList<PessoaJuridica>) ois.readObject();
+        mapaPessoas = (Map<Integer, PessoaJuridica>) ois.readObject();
         ois.close();
-        System.out.println("Dados de Pessoa Juridica Recuperados");
+        System.out.println("Dados de Pessoa Fisica Recuperados.");
     }
 
 

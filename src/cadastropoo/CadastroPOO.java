@@ -54,8 +54,8 @@ public class CadastroPOO {
                 
                 if(tipoPessoa.equals("F")){
                     System.out.println("Selecionado Pessoa Fisica");
-                    /*model.PessoaFisicaRepo repo1 = new model.PessoaFisicaRepo();*/
-                    System.out.println("Digite o ID: ");
+                 
+                    /*System.out.println("Digite o ID: ");
                     int Id = scanner.nextInt();
                     System.out.println("Digite o Nome: ");
                     String nome = scanner.next();
@@ -64,27 +64,50 @@ public class CadastroPOO {
                     System.out.println("Digite a Idade: ");
                     int idade = scanner.nextInt();
                     
-                    PessoaFisica pessoa = new model.PessoaFisica(Id,nome,cpf,idade);
+                    PessoaFisica pessoa = new model.PessoaFisica(Id,nome,cpf,idade);*/
+                    //teste
+                    PessoaFisica pessoa1 = new model.PessoaFisica(1,"Ana","111111111",20);                   
+                    PessoaFisica pessoa2 = new model.PessoaFisica(2,"Paulo","222222222",19);                    
+                    PessoaFisica pessoa3 = new model.PessoaFisica(3,"Tadeu","333333333",89);                   
+                    PessoaFisica pessoa4 = new model.PessoaFisica(4,"Roberto","4444444444",35);                  
+                    PessoaFisica pessoa5 = new model.PessoaFisica(5,"Walter","5555555555",50);                   
+                    repo1.inserir(pessoa1);
+                    repo1.inserir(pessoa2);
+                    repo1.inserir(pessoa3);
+                    repo1.inserir(pessoa4);
+                    repo1.inserir(pessoa5);
                     
-                    repo1.inserir(pessoa);
                     
                     /*System.out.println(pessoa);*/
                     caso1 = false;
                     
                 }else if(tipoPessoa.equals("J")){
-                    System.out.println("certo! J ");
+                    System.out.println("Selecionado Pessoa Juridica");
                     
-                    /*model.PessoaJuridicaRepo repo1 = new model.PessoaJuridicaRepo();*/
-                    System.out.println("Digite o ID: ");
+                   
+                    /*System.out.println("Digite o ID: ");
                     int Id = scanner.nextInt();
                     System.out.println("Digite o Nome: ");
                     String nome = scanner.next();
                     System.out.println("Digite o CNPJ: ");
                     String cnpj = scanner.next();
+               
+                    PessoaJuridica pessoa = new model.PessoaJuridica(Id,nome,cnpj);*/
                     
-                    PessoaJuridica pessoa = new model.PessoaJuridica(Id,nome,cnpj);
+
+                //teste
+                    PessoaJuridica pessoa1 = new model.PessoaJuridica(1,"Tapateu","11111111");
+                    PessoaJuridica pessoa2 = new model.PessoaJuridica(2,"Noscodai","2222222");
+                    PessoaJuridica pessoa3 = new model.PessoaJuridica(3,"Antsgus","3333333");
+                    PessoaJuridica pessoa4 = new model.PessoaJuridica(4,"onteihoje","4444444444");
+                    PessoaJuridica pessoa5 = new model.PessoaJuridica(5,"codemar","555555555");
+                   
                     
-                    repo2.inserir(pessoa);
+                    repo2.inserir(pessoa1);
+                    repo2.inserir(pessoa2);
+                    repo2.inserir(pessoa3);
+                    repo2.inserir(pessoa4);
+                    repo2.inserir(pessoa5);
                     
                    
                     caso1 = false;
@@ -96,43 +119,49 @@ public class CadastroPOO {
             }   }
         case 2 -> {
            
-            System.out.println("Selecionado Alterar Pessoa");
-            System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
+                System.out.println("Selecionado Alterar Pessoa");
+                System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
                 String tipoPessoa = scanner.next().toUpperCase();
                 
                 if(tipoPessoa.equals("F")){
-                   System.out.println("Digite o ID da pessoa que deseja alterar: ");
+                    System.out.println("Digite o ID da pessoa que deseja alterar: ");
                     int id = scanner.nextInt();
+                    scanner.nextLine();
 
                     PessoaFisica pessoaFisica = repo1.obter(id);
                     System.out.println(pessoaFisica);
             
                     System.out.println("Digite o nome: ");
                     String nome = scanner.nextLine();
+                    
                     System.out.println("Digite o CPF: ");
                     String cpf = scanner.nextLine();
+                    
                     System.out.println("Digite o Idade: ");
                     int idade = scanner.nextInt();
                    
                     PessoaFisica pessoaAlterada = new model.PessoaFisica(id,nome,cpf , idade);
                     repo1.alterar(pessoaAlterada);
+                    
                     System.out.println("Pessoa alterada com sucesso!");
 
                 }else if (tipoPessoa.equals("J")){
                     System.out.println("Digite o ID da pessoa que deseja alterar: ");
                     int id = scanner.nextInt();
+                    scanner.nextLine();
 
                     PessoaJuridica pessoaJuridica = repo2.obter(id);
                     System.out.println(pessoaJuridica);
             
                     System.out.println("Digite o nome: ");
-                    String nome = scanner.next();
-                    System.out.println("Digite o CNPJ: ");
-                    String cnpj = scanner.next();
-                    pessoaJuridica.setNome(nome);
-                    pessoaJuridica.setCnpj(cnpj);
+                    String nome = scanner.nextLine();
                     
-                    repo2.alterar(pessoaJuridica);
+                    System.out.println("Digite o CNPJ: ");
+                    String cnpj = scanner.nextLine();
+                    
+                    PessoaJuridica pessoaAlterada = new model.PessoaJuridica(id,nome,cnpj);
+                    repo2.alterar(pessoaAlterada);
+                    
                     System.out.println("Pessoa alterada com sucesso!");
                 
                 }
