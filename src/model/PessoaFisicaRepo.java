@@ -44,6 +44,7 @@ public class PessoaFisicaRepo {
 
     public PessoaFisica obter(int id) {
         return mapaPessoas.get(id);
+        
     }
 
     public List<PessoaFisica> obterTodos() {

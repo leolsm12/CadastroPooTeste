@@ -20,7 +20,7 @@ public class CadastroPOO {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        boolean inicio = true;
+        boolean inicio = true;       
         model.PessoaFisicaRepo repo1 = new model.PessoaFisicaRepo();
         model.PessoaJuridicaRepo repo2 = new model.PessoaJuridicaRepo();
         
@@ -108,8 +108,7 @@ public class CadastroPOO {
                     repo2.inserir(pessoa3);
                     repo2.inserir(pessoa4);
                     repo2.inserir(pessoa5);
-                    
-                   
+            
                     caso1 = false;
                     
                 }else {
@@ -118,7 +117,8 @@ public class CadastroPOO {
                 }
             }   }
         case 2 -> {
-           
+                boolean caso1 = true;
+                while(caso1 == true){
                 System.out.println("Selecionado Alterar Pessoa");
                 System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
                 String tipoPessoa = scanner.next().toUpperCase();
@@ -144,6 +144,7 @@ public class CadastroPOO {
                     repo1.alterar(pessoaAlterada);
                     
                     System.out.println("Pessoa alterada com sucesso!");
+                    caso1 = false;
 
                 }else if (tipoPessoa.equals("J")){
                     System.out.println("Digite o ID da pessoa que deseja alterar: ");
@@ -163,18 +164,139 @@ public class CadastroPOO {
                     repo2.alterar(pessoaAlterada);
                     
                     System.out.println("Pessoa alterada com sucesso!");
-                
+                    caso1 = false;
+                }else{
+                    System.out.println("Comando Incorreto!!");
+                    caso1 = true;
                 }
-                    
-                
+                }  
           
         }
         
-        case 3 -> System.out.println("Excluir Pessoa");
-        case 4 -> System.out.println("Buscar pelo Id");
-        case 5 -> System.out.println("Exibir Todos");
-        case 6 -> System.out.println("Persistir Dados");
-        case 7 -> System.out.println("Recuperar Dados");
+        case 3 ->{ 
+            
+            System.out.println("Selecionado Excluir Pessoa");
+            boolean caso1 = true;
+            while(caso1 == true){
+                System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
+                String tipoPessoa = scanner.next().toUpperCase();
+                if(tipoPessoa.equals("F")){
+                    System.out.println("Digite o ID da pessoa que deseja alterar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    repo1.excluir(id);
+                    System.out.println("Pessoa excluida com sucesso!");
+               
+                
+                    caso1 = false; 
+                }else if (tipoPessoa.equals("J")){
+                    System.out.println("Digite o ID da pessoa que deseja alterar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    repo2.excluir(id);
+                    System.out.println("Pessoa excluida com sucesso!");
+
+                    caso1 = false;
+                }else{
+                    System.out.println("Comando Incorreto!!");
+                    caso1 = true;
+            }
+        
+          }
+        }
+        
+        
+        case 4 -> {
+            System.out.println("Selecionado Buscar pelo Id");
+            boolean caso1 = true;
+            while(caso1 == true){
+                
+                System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
+                String tipoPessoa = scanner.next().toUpperCase();
+                
+                if(tipoPessoa.equals("F")){
+                    
+                    System.out.println("Digite o ID da pessoa que deseja obter: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    PessoaFisica pessoaFisica = repo1.obter(id);
+                    System.out.println(pessoaFisica);
+                    
+                    System.out.println("Pessoa obtida com sucesso!");
+               
+                
+                    caso1 = false; 
+                }else if (tipoPessoa.equals("J")){
+                    
+                    System.out.println("Digite o ID da pessoa que deseja obter: ");
+                    int id = scanner.nextInt();                  
+                    scanner.nextLine();
+                    
+                    PessoaJuridica pessoaJuridica = repo2.obter(id);
+                    System.out.println(pessoaJuridica);
+                    
+                    System.out.println("Pessoa obtida com sucesso!");
+
+                    caso1 = false;
+                }else{
+                    System.out.println("Comando Incorreto!!");
+                    caso1 = true;
+            }
+        
+          }
+        }
+        case 5 -> {
+            System.out.println("Selecionado Exibir Todos");
+            
+            boolean caso1 = true;
+            while(caso1 == true){
+                
+                System.out.println("F - Pessoa Fisica | J - Pessoa Juridica ");
+                String tipoPessoa = scanner.next().toUpperCase();
+                
+                if(tipoPessoa.equals("F")){
+                    
+                   for (PessoaFisica pessoa : repo1.obterTodos()) {
+                    System.out.println(pessoa);
+               
+                   }
+              
+                    caso1 = false; 
+                }else if (tipoPessoa.equals("J")){
+                    
+                    for (PessoaJuridica pessoa : repo2.obterTodos()) {
+                    System.out.println(pessoa);
+                    }
+
+                    caso1 = false;
+                }else{
+                    System.out.println("Comando Incorreto!!");
+                    caso1 = true;
+            }
+        
+          }
+        }
+        case 6 -> {
+            System.out.println("Selecionado  Persistir Dados");
+                scanner.nextLine();
+                System.out.println("Digite o prefixo do arquivo:");
+                String prefixo = scanner.nextLine();
+                
+                repo1.persistir(prefixo + ".fisica.bin");
+                repo2.persistir(prefixo + ".fisica.bin");
+        
+        }
+        case 7 -> {
+            System.out.println("Selecionado Recuperar Dados");
+                scanner.nextLine();
+                System.out.println("Digite o prefixo do arquivo:");
+                String prefixo = scanner.nextLine();
+                
+                repo1.recuperar(prefixo + ".fisica.bin");
+                repo2.recuperar(prefixo + ".fisica.bin");
+        
+        }
         case 0 -> {
             System.out.println("Programa Finalizado!");
             inicio = false;
@@ -182,67 +304,8 @@ public class CadastroPOO {
         default -> System.out.println("Comando Incorreto!!");
             
         }
-        /*System.out.println(repo1);*/
-        for (PessoaFisica pessoa : repo1.obterTodos()) {
-                System.out.println(pessoa);
-            }
-        for (PessoaJuridica pessoa : repo2.obterTodos()) {
-                System.out.println(pessoa);
-            }
-        }
-        
-  
-        
-      
-               
-  
-        
- 
-        
-        /*model.PessoaFisicaRepo repo1 = new model.PessoaFisicaRepo();
-            PessoaFisica pessoa1 = new model.PessoaFisica(1,"Ana","11111111111",25);
-            PessoaFisica pessoa2 = new model.PessoaFisica(2,"Carlos","22222222222" , 52);
-        
-            repo1.inserir(pessoa1);
-            repo1.inserir(pessoa2);
-       
-            repo1.persistir("cpf.txt");
-        
-             
-        model.PessoaFisicaRepo repo2 = new model.PessoaFisicaRepo();
-
-        
-            repo2.recuperar("cpf.txt");
-
-        
-            for (PessoaFisica pessoa : repo2.obterTodos()) {
-                System.out.println(pessoa);
-            }
-       
-        model.PessoaJuridicaRepo repo3 = new model.PessoaJuridicaRepo();
-            PessoaJuridica pessoa3 = new model.PessoaJuridica(3, "XPTO Sales","33333333333333");
-            PessoaJuridica pessoa4 = new model.PessoaJuridica(4, "XPTO Solution","44444444444444");
-            
-            repo3.inserir(pessoa3);
-            repo3.inserir(pessoa4);
-            
-            repo3.persistir("cnpj.txt");
-            
-        model.PessoaJuridicaRepo repo4 = new model.PessoaJuridicaRepo();
-        
-            repo4.recuperar("cnpj.txt");
-            
-            for (PessoaJuridica pessoa : repo4.obterTodos()) {
-                System.out.println(pessoa);
-            }*/
-        
-        
-        
-    
-
-        
-       
         
     }
-    
-}
+ }
+}   
+

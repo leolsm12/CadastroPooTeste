@@ -56,7 +56,7 @@ public class PessoaJuridicaRepo {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(mapaPessoas);
         oos.close();
-        System.out.println("Dados de Pessoa Fisica Armazenados.");
+        System.out.println("Dados de Pessoa Juridica Armazenados.");
     }
 
     public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
@@ -64,7 +64,7 @@ public class PessoaJuridicaRepo {
         ObjectInputStream ois = new ObjectInputStream(fis);
         mapaPessoas = (Map<Integer, PessoaJuridica>) ois.readObject();
         ois.close();
-        System.out.println("Dados de Pessoa Fisica Recuperados.");
+        System.out.println("Dados de Pessoa Juridica Recuperados.");
     }
 
 
