@@ -17,8 +17,9 @@ public class PessoaJuridica extends Pessoa implements Serializable{
     public PessoaJuridica() {
     }
 
-    public PessoaJuridica(int id, String nome, String cnpj) {
-        super(id, nome);
+    public PessoaJuridica(Integer id, String nome, String cnpj) {
+        this.setId(id);
+        this.setNome(nome);
         this.cnpj = cnpj;
     }
 
@@ -32,8 +33,8 @@ public class PessoaJuridica extends Pessoa implements Serializable{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(id).append("\n");
-        sb.append("Nome: ").append(nome).append("\n");
+        sb.append("Id: ").append(this.getId()).append("\n");
+        sb.append("Nome: ").append(this.getNome()).append("\n");
         sb.append("CNPJ: ").append(cnpj);
     return sb.toString();
 }

@@ -7,21 +7,48 @@ package model;
 import java.io.Serializable;
 
 /**
- *
  * @author leosc
  */
-public class PessoaFisica extends Pessoa implements Serializable{
+public class PessoaFisica extends Pessoa implements Serializable {
 
     private String cpf;
-    private int idade;
 
-    public PessoaFisica() {
+//    public PessoaFisica() {
+//    }
+
+    public PessoaFisica(Integer id, String nome, Integer idade) {
+        this.setNome(nome);
+        this.setIdade(idade);
     }
 
-    public PessoaFisica(int id, String nome, String cpf, int idade) {
-        super(id, nome);
-        this.cpf = cpf;
-        this.idade = idade;
+    @Override
+    public Integer getId() {
+        return super.getId();
+    }
+
+    @Override
+    public void setId(Integer id) {
+        super.setId(id);
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public Integer getIdade() {
+        return super.getIdade();
+    }
+
+    @Override
+    public void setIdade(Integer idade) {
+        super.setIdade(idade);
     }
 
     public String getCpf() {
@@ -32,22 +59,14 @@ public class PessoaFisica extends Pessoa implements Serializable{
         this.cpf = cpf;
     }
 
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(id).append("\n");
-        sb.append("Nome: ").append(nome).append("\n");
+        sb.append("Id: ").append(this.getId()).append("\n");
+        sb.append("Nome: ").append(this.getNome()).append("\n");
         sb.append("CPF: ").append(cpf).append("\n");
-        sb.append("Idade: ").append(idade);
-    return sb.toString();        
+        sb.append("Idade: ").append(this.getIdade());
+        return sb.toString();
     }
 
 }

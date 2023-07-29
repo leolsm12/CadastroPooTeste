@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package repository;
+
+import model.PessoaJuridica;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,18 +23,19 @@ import java.util.Map;
  */
 
 
-public class PessoaFisicaRepo {
-        private Map<Integer, PessoaFisica> mapaPessoas;
-        
-        public PessoaFisicaRepo() { mapaPessoas = new HashMap<>();}
+public class PessoaJuridicaRepo {
 
-    public void inserir(PessoaFisica pessoaFisica) {
-        mapaPessoas.put(pessoaFisica.getId(), pessoaFisica);
+    private Map<Integer, PessoaJuridica> mapaPessoas;
+    
+    public PessoaJuridicaRepo() { mapaPessoas = new HashMap<>();}
+
+    public void inserir(PessoaJuridica pessoaJuridica) {
+        mapaPessoas.put(pessoaJuridica.getId(), pessoaJuridica);
     }
 
-    public void alterar(PessoaFisica pessoaFisica) {
-        if (mapaPessoas.containsKey(pessoaFisica.getId())) {
-            mapaPessoas.put(pessoaFisica.getId(), pessoaFisica);
+    public void alterar(PessoaJuridica pessoaJuridica) {
+        if (mapaPessoas.containsKey(pessoaJuridica.getId())) {
+            mapaPessoas.put(pessoaJuridica.getId(), pessoaJuridica);
         } else {
             System.out.println("Pessoa não encontrada. Não foi possível realizar a alteração.");
         }
@@ -42,12 +45,11 @@ public class PessoaFisicaRepo {
         mapaPessoas.remove(id);
     }
 
-    public PessoaFisica obter(int id) {
+    public PessoaJuridica obter(int id) {
         return mapaPessoas.get(id);
-        
     }
 
-    public List<PessoaFisica> obterTodos() {
+    public List<PessoaJuridica> obterTodos() {
         return new ArrayList<>(mapaPessoas.values());
     }
 
@@ -56,21 +58,16 @@ public class PessoaFisicaRepo {
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(mapaPessoas);
         oos.close();
-        System.out.println("Dados de Pessoa Fisica Armazenados.");
+        System.out.println("Dados de Pessoa Juridica Armazenados.");
     }
 
     public void recuperar(String nomeArquivo) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(new File(nomeArquivo));
         ObjectInputStream ois = new ObjectInputStream(fis);
-        mapaPessoas = (Map<Integer, PessoaFisica>) ois.readObject();
+        mapaPessoas = (Map<Integer, PessoaJuridica>) ois.readObject();
         ois.close();
-        System.out.println("Dados de Pessoa Fisica Recuperados.");
+        System.out.println("Dados de Pessoa Juridica Recuperados.");
     }
 
-    public void inserir(PessoaJuridica pessoa) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-    
 
 }

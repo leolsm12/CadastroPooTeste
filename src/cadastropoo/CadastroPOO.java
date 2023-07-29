@@ -7,6 +7,10 @@ package cadastropoo;
 import java.io.IOException;
 import model.PessoaFisica;
 import model.PessoaJuridica;
+import repository.PessoaFisicaRepo;
+import repository.PessoaJuridicaRepo;
+
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -21,8 +25,8 @@ public class CadastroPOO {
      */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         boolean inicio = true;       
-        model.PessoaFisicaRepo repo1 = new model.PessoaFisicaRepo();
-        model.PessoaJuridicaRepo repo2 = new model.PessoaJuridicaRepo();
+        PessoaFisicaRepo repo1 = new PessoaFisicaRepo();
+        PessoaJuridicaRepo repo2 = new PessoaJuridicaRepo();
         
         while(inicio == true){
         
@@ -54,28 +58,40 @@ public class CadastroPOO {
                 
                 if(tipoPessoa.equals("F")){
                     System.out.println("Selecionado Pessoa Fisica");
-                 
-                    /*System.out.println("Digite o ID: ");
-                    int Id = scanner.nextInt();
+                    PessoaFisica pessoa = new PessoaFisica(12, "", 12);
+
+//                    PessoaFisica p2 = new
+
+
+
+
+                    pessoa.setId(new Random().nextInt());
+
                     System.out.println("Digite o Nome: ");
                     String nome = scanner.next();
                     System.out.println("Digite o CPF: ");
                     String cpf = scanner.next();
                     System.out.println("Digite a Idade: ");
-                    int idade = scanner.nextInt();
-                    
-                    PessoaFisica pessoa = new model.PessoaFisica(Id,nome,cpf,idade);*/
+                    Integer idade = scanner.nextInt();
+
+                    pessoa.setNome(nome);
+                    pessoa.setCpf(cpf);
+                    pessoa.setIdade(idade);
+
+                    repo1.inserir(pessoa);
+
+
                     //teste
-                    PessoaFisica pessoa1 = new model.PessoaFisica(1,"Ana","111111111",20);                   
-                    PessoaFisica pessoa2 = new model.PessoaFisica(2,"Paulo","222222222",19);                    
-                    PessoaFisica pessoa3 = new model.PessoaFisica(3,"Tadeu","333333333",89);                   
-                    PessoaFisica pessoa4 = new model.PessoaFisica(4,"Roberto","4444444444",35);                  
-                    PessoaFisica pessoa5 = new model.PessoaFisica(5,"Walter","5555555555",50);                   
-                    repo1.inserir(pessoa1);
-                    repo1.inserir(pessoa2);
-                    repo1.inserir(pessoa3);
-                    repo1.inserir(pessoa4);
-                    repo1.inserir(pessoa5);
+//                    PessoaFisica pessoa1 = new model.PessoaFisica(1,"Ana","111111111",20);
+//                    PessoaFisica pessoa2 = new model.PessoaFisica(2,"Paulo","222222222",19);
+//                    PessoaFisica pessoa3 = new model.PessoaFisica(3,"Tadeu","333333333",89);
+//                    PessoaFisica pessoa4 = new model.PessoaFisica(4,"Roberto","4444444444",35);
+//                    PessoaFisica pessoa5 = new model.PessoaFisica(5,"Walter","5555555555",50);
+//                    repo1.inserir(pessoa1);
+//                    repo1.inserir(pessoa2);
+//                    repo1.inserir(pessoa3);
+//                    repo1.inserir(pessoa4);
+//                    repo1.inserir(pessoa5);
                     
                     
                     /*System.out.println(pessoa);*/
@@ -96,20 +112,20 @@ public class CadastroPOO {
                     
 
                 //teste
-                    PessoaJuridica pessoa1 = new model.PessoaJuridica(1,"Tapateu","11111111");
-                    PessoaJuridica pessoa2 = new model.PessoaJuridica(2,"Noscodai","2222222");
-                    PessoaJuridica pessoa3 = new model.PessoaJuridica(3,"Antsgus","3333333");
-                    PessoaJuridica pessoa4 = new model.PessoaJuridica(4,"onteihoje","4444444444");
-                    PessoaJuridica pessoa5 = new model.PessoaJuridica(5,"codemar","555555555");
+//                    PessoaJuridica pessoa1 = new PessoaJuridica(1,"Tapateu","11111111");
+//                    PessoaJuridica pessoa2 = new PessoaJuridica(2,"Noscodai","2222222");
+//                    PessoaJuridica pessoa3 = new PessoaJuridica(3,"Antsgus","3333333");
+//                    PessoaJuridica pessoa4 = new PessoaJuridica(4,"onteihoje","4444444444");
+//                    PessoaJuridica pessoa5 = new PessoaJuridica(5,"codemar","555555555");
                    
                     
-                    repo2.inserir(pessoa1);
-                    repo2.inserir(pessoa2);
-                    repo2.inserir(pessoa3);
-                    repo2.inserir(pessoa4);
-                    repo2.inserir(pessoa5);
-            
-                    caso1 = false;
+//                    repo2.inserir(pessoa1);
+//                    repo2.inserir(pessoa2);
+//                    repo2.inserir(pessoa3);
+//                    repo2.inserir(pessoa4);
+//                    repo2.inserir(pessoa5);
+//
+//                    caso1 = false;
                     
                 }else {
                     System.out.println("Comando Incorreto!!");
@@ -125,7 +141,7 @@ public class CadastroPOO {
                 
                 if(tipoPessoa.equals("F")){
                     System.out.println("Digite o ID da pessoa que deseja alterar: ");
-                    int id = scanner.nextInt();
+                    Integer id = scanner.nextInt();
                     scanner.nextLine();
 
                     PessoaFisica pessoaFisica = repo1.obter(id);
@@ -138,9 +154,9 @@ public class CadastroPOO {
                     String cpf = scanner.nextLine();
                     
                     System.out.println("Digite o Idade: ");
-                    int idade = scanner.nextInt();
+                    Integer idade = scanner.nextInt();
                    
-                    PessoaFisica pessoaAlterada = new model.PessoaFisica(id,nome,cpf , idade);
+                    PessoaFisica pessoaAlterada = new PessoaFisica(id, nome, idade);
                     repo1.alterar(pessoaAlterada);
                     
                     System.out.println("Pessoa alterada com sucesso!");
@@ -160,7 +176,7 @@ public class CadastroPOO {
                     System.out.println("Digite o CNPJ: ");
                     String cnpj = scanner.nextLine();
                     
-                    PessoaJuridica pessoaAlterada = new model.PessoaJuridica(id,nome,cnpj);
+                    PessoaJuridica pessoaAlterada = new PessoaJuridica(id,nome,cnpj);
                     repo2.alterar(pessoaAlterada);
                     
                     System.out.println("Pessoa alterada com sucesso!");
