@@ -23,7 +23,7 @@ public class PessoaFisica extends Pessoa implements Serializable{
         this.cpf = cpf;
         this.idade = idade;
     }
-
+    
     public String getCpf() {
         return cpf;
     }
@@ -40,14 +40,18 @@ public class PessoaFisica extends Pessoa implements Serializable{
         this.idade = idade;
     }
     
+    
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(id).append("\n");
-        sb.append("Nome: ").append(nome).append("\n");
+        sb.append("Id: ").append(getId()).append("\n");
+        sb.append("Nome: ").append(getNome()).append("\n");
         sb.append("CPF: ").append(cpf).append("\n");
         sb.append("Idade: ").append(idade);
     return sb.toString();        
     }
+    
+     
 
 }

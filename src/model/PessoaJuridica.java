@@ -32,11 +32,11 @@ public class PessoaJuridica extends Pessoa implements Serializable{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Id: ").append(id).append("\n");
-        sb.append("Nome: ").append(nome).append("\n");
+        sb.append("Id: ").append(getId()).append("\n");
+        sb.append("Nome: ").append(getNome()).append("\n");
         sb.append("CNPJ: ").append(cnpj);
     return sb.toString();
-}
+    }
 
     
 }

@@ -10,20 +10,27 @@ import model.PessoaJuridica;
 import java.util.Scanner;
 
 
+
 /**
  *
  * @author leosc
  */
 public class CadastroPOO {
+    private static int IdCadastro = 1;
+    
+    public static int proximoId(){
+        return IdCadastro++;
+    }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        boolean inicio = true;       
+    public static void main(String[] args) throws IOException, ClassNotFoundException {       
+        boolean inicio = true;
+      
         model.PessoaFisicaRepo repo1 = new model.PessoaFisicaRepo();
         model.PessoaJuridicaRepo repo2 = new model.PessoaJuridicaRepo();
-        
+    
         while(inicio == true){
         
         System.out.println("==================================");
@@ -54,9 +61,10 @@ public class CadastroPOO {
                 
                 if(tipoPessoa.equals("F")){
                     System.out.println("Selecionado Pessoa Fisica");
-                 
-                    /*System.out.println("Digite o ID: ");
-                    int Id = scanner.nextInt();
+                    PessoaFisica pessoa = new model.PessoaFisica();
+                    pessoa.setId(proximoId());
+                    
+                    /*int Id = scanner.nextInt();*/
                     System.out.println("Digite o Nome: ");
                     String nome = scanner.next();
                     System.out.println("Digite o CPF: ");
@@ -64,58 +72,36 @@ public class CadastroPOO {
                     System.out.println("Digite a Idade: ");
                     int idade = scanner.nextInt();
                     
-                    PessoaFisica pessoa = new model.PessoaFisica(Id,nome,cpf,idade);*/
-                    //teste
-                    PessoaFisica pessoa1 = new model.PessoaFisica(1,"Ana","111111111",20);                   
-                    PessoaFisica pessoa2 = new model.PessoaFisica(2,"Paulo","222222222",19);                    
-                    PessoaFisica pessoa3 = new model.PessoaFisica(3,"Tadeu","333333333",89);                   
-                    PessoaFisica pessoa4 = new model.PessoaFisica(4,"Roberto","4444444444",35);                  
-                    PessoaFisica pessoa5 = new model.PessoaFisica(5,"Walter","5555555555",50);                   
-                    repo1.inserir(pessoa1);
-                    repo1.inserir(pessoa2);
-                    repo1.inserir(pessoa3);
-                    repo1.inserir(pessoa4);
-                    repo1.inserir(pessoa5);
-                    
-                    
-                    /*System.out.println(pessoa);*/
+                    pessoa.setNome(nome);
+                    pessoa.setCpf(cpf);
+                    pessoa.setIdade(idade);
+                              
+                    repo1.inserir(pessoa);
                     caso1 = false;
                     
                 }else if(tipoPessoa.equals("J")){
                     System.out.println("Selecionado Pessoa Juridica");
+                    PessoaJuridica pessoa = new model.PessoaJuridica();
+                    pessoa.setId(proximoId());
                     
-                   
-                    /*System.out.println("Digite o ID: ");
-                    int Id = scanner.nextInt();
                     System.out.println("Digite o Nome: ");
                     String nome = scanner.next();
                     System.out.println("Digite o CNPJ: ");
                     String cnpj = scanner.next();
+                    
+                    pessoa.setNome(nome);
+                    pessoa.setCnpj(cnpj);
+                    
                
-                    PessoaJuridica pessoa = new model.PessoaJuridica(Id,nome,cnpj);*/
-                    
-
-                //teste
-                    PessoaJuridica pessoa1 = new model.PessoaJuridica(1,"Tapateu","11111111");
-                    PessoaJuridica pessoa2 = new model.PessoaJuridica(2,"Noscodai","2222222");
-                    PessoaJuridica pessoa3 = new model.PessoaJuridica(3,"Antsgus","3333333");
-                    PessoaJuridica pessoa4 = new model.PessoaJuridica(4,"onteihoje","4444444444");
-                    PessoaJuridica pessoa5 = new model.PessoaJuridica(5,"codemar","555555555");
-                   
-                    
-                    repo2.inserir(pessoa1);
-                    repo2.inserir(pessoa2);
-                    repo2.inserir(pessoa3);
-                    repo2.inserir(pessoa4);
-                    repo2.inserir(pessoa5);
-            
+                    repo2.inserir(pessoa);
                     caso1 = false;
                     
                 }else {
                     System.out.println("Comando Incorreto!!");
                     caso1 = true;
-                }
-            }   }
+                    }
+                }   
+            }
         case 2 -> {
                 boolean caso1 = true;
                 while(caso1 == true){
@@ -168,10 +154,10 @@ public class CadastroPOO {
                 }else{
                     System.out.println("Comando Incorreto!!");
                     caso1 = true;
-                }
+                    }
                 }  
           
-        }
+            }
         
         case 3 ->{ 
             

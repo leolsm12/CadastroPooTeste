@@ -12,8 +12,8 @@ import java.io.Serializable;
  */
 public class Pessoa implements Serializable {
     
-    int id;
-    String nome;
+    private int id;
+    private String nome;
     
     public Pessoa(){ }
     
